@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * The type Move list test.
+ * The type Move list ChessEngine.test.
  */
 public class MoveListTest {
 

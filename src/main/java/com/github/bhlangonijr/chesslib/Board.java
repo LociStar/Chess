@@ -960,7 +960,10 @@ public class Board implements Cloneable, BoardEvent {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
+        sb.append("  | a b c d e f g h\n");
+        sb.append("--|----------------\n");
         for (int i = 7; i >= 0; i--) {
+            sb.append(i + 1).append(" | ");
             Rank r = Rank.allRanks[i];
             for (int n = 0; n <= 7; n++) {
                 File f = File.allFiles[n];
@@ -968,14 +971,16 @@ public class Board implements Cloneable, BoardEvent {
                     Square sq = Square.encode(r, f);
                     Piece piece = getPiece(sq);
                     if (Piece.NONE.equals(piece)) {
-                        sb.append(" ");
+                        sb.append("  ");
                     } else {
-                        sb.append(Constants.getPieceNotation(piece));
+                        sb.append(Constants.getPieceNotation(piece)).append(" ");
                     }
                 }
             }
             sb.append("\n");
         }
+        sb.append("--|----------------\n");
+        sb.append("  | a b c d e f g h\n");
         sb.append("Side: " + getSideToMove());
 
         return sb.toString();

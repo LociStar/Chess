@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * The type Board test.
+ * The type Board ChessEngine.test.
  */
 public class BoardTest {
 

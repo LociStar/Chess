@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * The type Pgn holder test.
+ * The type Pgn holder ChessEngine.test.
  */
 public class PgnHolderTest {
 
@@ -23,7 +23,7 @@ public class PgnHolderTest {
     @Test
     public void testPGNLoad1() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/cct131.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/cct131.pgn");
         pgn.loadPgn();
         Game game = pgn.getGames().get(0);
         game.loadMoveText();
@@ -56,7 +56,7 @@ public class PgnHolderTest {
     @Test
     public void testPGNLoad2() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/rav_alternative.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/rav_alternative.pgn");
         pgn.loadPgn();
         Game game = pgn.getGames().get(0);
         game.loadMoveText();
@@ -90,7 +90,7 @@ public class PgnHolderTest {
     @Test
     public void testPGNLoad3() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/linares_2002.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/linares_2002.pgn");
         pgn.loadPgn();
         Game game = pgn.getGames().get(1);
         game.loadMoveText();
@@ -125,7 +125,7 @@ public class PgnHolderTest {
     @Test
     public void testPGNLoad4() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/redqueen.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/redqueen.pgn");
         pgn.loadPgn();
         Game game = pgn.getGames().get(1);
         game.loadMoveText();
@@ -156,7 +156,7 @@ public class PgnHolderTest {
     @Test
     public void testPromotionWithMissingEqualSign() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/promoting.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/promoting.pgn");
         pgn.loadPgn();
         Game game = pgn.getGames().get(0);
         game.loadMoveText();
@@ -175,7 +175,7 @@ public class PgnHolderTest {
     @Test
     public void testCupPgn() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/cup.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/cup.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();
@@ -190,7 +190,7 @@ public class PgnHolderTest {
     @Test
     public void testOO() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/oo.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/oo.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();
@@ -205,7 +205,7 @@ public class PgnHolderTest {
     @Test
     public void testEP() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/ep.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/ep.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();
@@ -220,7 +220,7 @@ public class PgnHolderTest {
     @Test
     public void testZ0() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/z0.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/z0.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();
@@ -235,7 +235,7 @@ public class PgnHolderTest {
     @Test(expected = PgnException.class)
     public void testErr() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/err.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/err.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();
@@ -250,7 +250,7 @@ public class PgnHolderTest {
     @Test
     public void testAnsi() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/Morphy_ANSI.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/Morphy_ANSI.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();
@@ -265,7 +265,7 @@ public class PgnHolderTest {
     @Test
     public void testUtf8() throws Exception {
 
-        PgnHolder pgn = new PgnHolder("src/test/resources/Morphy_UTF8.pgn");
+        PgnHolder pgn = new PgnHolder("src/ChessEngine.test/resources/Morphy_UTF8.pgn");
         pgn.loadPgn();
         for (Game game : pgn.getGames()) {
             game.loadMoveText();

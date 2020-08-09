@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * The type Move generator test.
+ * The type Move generator ChessEngine.test.
  */
 public class MoveGeneratorTest {
 

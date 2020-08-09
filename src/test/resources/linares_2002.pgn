@@ -2026,7 +2026,7 @@ Qc4 35. Qg7+ Kc8 36. Qh8+ Kb7 37. Qg7+ Kc8 38. Qf8+ Kc7 39. Qe7+ Kc8 40. Qe8+ Kc
 2. Nf3 Nc6 3. Bb5
 { While it was odd for Kasparov to use this against Shirov it makes more sense for Adams. Still, it's odd that two players would choose this when facing Shirov. }
 3...e6
-{ Shirov must suspect Adams has some improvement over the Kasparov-Shirov game or else he just wants to test Adams a bit by forcing him to find his own way. }
+{ Shirov must suspect Adams has some improvement over the Kasparov-Shirov game or else he just wants to ChessEngine.test Adams a bit by forcing him to find his own way. }
 4. O-O Nge7
 { I like this move because it makes Bb5 less effective. It can't force doubled pawns by capturing Nc6. }
 5. c3 a6 6. Ba4

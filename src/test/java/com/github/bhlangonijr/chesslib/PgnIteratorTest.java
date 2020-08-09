@@ -7,14 +7,14 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * The type Pgn iterator test.
+ * The type Pgn iterator ChessEngine.test.
  */
 public class PgnIteratorTest {
 
     @Test
     public void testPGNIteration() throws Exception {
 
-        PgnIterator games = new PgnIterator("src/test/resources/cct131.pgn");
+        PgnIterator games = new PgnIterator("src/ChessEngine.test/resources/cct131.pgn");
 
         int count = 0;
         for (Game game: games) {

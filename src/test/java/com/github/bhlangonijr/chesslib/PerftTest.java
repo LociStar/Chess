@@ -9,7 +9,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 /**
- * The type Perft test.
+ * The type Perft ChessEngine.test.
  */
 public class PerftTest {
 
