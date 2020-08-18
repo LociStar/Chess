@@ -1,4 +1,4 @@
-package ChessEngine;
+package chessEngine;
 
 import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.Piece;
@@ -7,8 +7,6 @@ import com.github.bhlangonijr.chesslib.Square;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveGenerator;
 import com.github.bhlangonijr.chesslib.move.MoveList;
-
-import java.util.ArrayList;
 
 public class Bot {
 
@@ -137,7 +135,7 @@ public class Bot {
 
     /*public int evaluation(char[] positions) {
         //System.out.println(positions);
-        int[] evalBlack = new int[]{-10, -30, -30, -50, -90, -900}; //pnbrqk
+        int[] evalBlack = new int[]{-10, -30, -30, -50, -90, -900}; // p-n-b-r-q-k
         int[] evalWhite = new int[]{10, 30, 30, 50, 90, 900};
         int eval = 0;
             for (Character position : positions) {

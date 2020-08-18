@@ -1,4 +1,4 @@
-package ChessEngine;
+package chessEngine;
 
 import com.github.bhlangonijr.chesslib.Side;
 

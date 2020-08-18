@@ -191,7 +191,7 @@ You could achieve the same by loading the move list final FEN position:
 
 ## Sanity checking of chesslib move generation with Perft
 
-Perft, (performance ChessEngine.test, move path enumeration) is a debugging function to walk the 
+Perft, (performance chessEngine.Main, move path enumeration) is a debugging function to walk the 
 move generation tree of strictly legal moves to count all the leaf nodes of a certain depth.
 Example of a perft function using chesslib: 
 

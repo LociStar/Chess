@@ -1,7 +1,6 @@
-package ChessEngine;
+package chessEngine;
 
 import com.github.bhlangonijr.chesslib.Board;
-import com.github.bhlangonijr.chesslib.Side;
 import com.github.bhlangonijr.chesslib.Square;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveGenerator;
@@ -9,11 +8,11 @@ import com.github.bhlangonijr.chesslib.move.MoveList;
 
 import java.util.Scanner;
 
-public class test {
+public class Main {
     public static void main(String[] args) throws Exception {
 
         boolean bot_active = false;
-        Bot bot = null;
+        Bot bot;
 
         Scanner in = new Scanner(System.in);
         Board board = new Board();
@@ -22,10 +21,8 @@ public class test {
         System.out.println("Player vs. Robot?");
         if (in.nextLine().equalsIgnoreCase("yes")) {
             bot_active = true;
-            bot = new Bot(board);// load engine/ bot-object
-        } else {
-            bot = new Bot(board);
         }
+        bot = new Bot(board);// load engine/ bot-object
 
         System.out.println("Name: ");
         Person person = new Person(in.nextLine());
@@ -57,7 +54,6 @@ public class test {
 
                 } else {
                     bot.bot_move(board);
-                    ;
                 }
             } else {
                 bot.bot_move(board);
