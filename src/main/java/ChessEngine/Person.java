@@ -6,7 +6,7 @@ public class Person {
     String name;
     Side side = Side.WHITE;
 
-    public Person(String name){
+    public Person(String name) {
         this.name = name;
     }
 }
