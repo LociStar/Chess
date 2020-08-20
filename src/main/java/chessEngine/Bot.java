@@ -94,42 +94,42 @@ public class Bot {
 
     public int evaluation(Board board) {
         this.value = 0;
-        for (Square square : board.getPieceLocation(Piece.BLACK_PAWN)) {
+        for (Square ignored : board.getPieceLocation(Piece.BLACK_PAWN)) {
             this.value -= 10;
         }
-        for (Square square : board.getPieceLocation(Piece.BLACK_ROOK)) {
+        for (Square ignored : board.getPieceLocation(Piece.BLACK_ROOK)) {
             this.value -= 50;
         }
-        for (Square square : board.getPieceLocation(Piece.BLACK_BISHOP)) {
+        for (Square ignored : board.getPieceLocation(Piece.BLACK_BISHOP)) {
             this.value -= 30;
         }
-        for (Square square : board.getPieceLocation(Piece.BLACK_KNIGHT)) {
+        for (Square ignored : board.getPieceLocation(Piece.BLACK_KNIGHT)) {
             this.value -= 30;
         }
-        for (Square square : board.getPieceLocation(Piece.BLACK_QUEEN)) {
+        for (Square ignored : board.getPieceLocation(Piece.BLACK_QUEEN)) {
             this.value -= 90;
         }
-        for (Square square : board.getPieceLocation(Piece.BLACK_KING)) {
+        for (Square ignored : board.getPieceLocation(Piece.BLACK_KING)) {
             this.value -= 900;
         }
-        for (Square square : board.getPieceLocation(Piece.WHITE_PAWN)) {
+        for (Square ignored : board.getPieceLocation(Piece.WHITE_PAWN)) {
             this.value += 10;
         }
-        for (Square square : board.getPieceLocation(Piece.WHITE_ROOK)) {
+        for (Square ignored : board.getPieceLocation(Piece.WHITE_ROOK)) {
             this.value += 50;
         }
-        for (Square square : board.getPieceLocation(Piece.WHITE_BISHOP)) {
+        for (Square ignored : board.getPieceLocation(Piece.WHITE_BISHOP)) {
             this.value += 30;
         }
-        for (Square square : board.getPieceLocation(Piece.WHITE_KNIGHT)) {
+        for (Square ignored : board.getPieceLocation(Piece.WHITE_KNIGHT)) {
             this.value += 30;
         }
-        for (Square square : board.getPieceLocation(Piece.WHITE_QUEEN)) {
+        for (Square ignored : board.getPieceLocation(Piece.WHITE_QUEEN)) {
             this.value += 90;
         }
-        //for (Square square : board.getPieceLocation(Piece.WHITE_KING)) {
-        //    this.value += 900;
-        //}
+        for (Square ignored : board.getPieceLocation(Piece.WHITE_KING)) {
+            this.value += 900;
+        }
         return value;
     }
 
