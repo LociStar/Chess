@@ -29,7 +29,7 @@ public class MainThreadClass {
 
         for (Move move : moves) {
             board.doMove(move);
-            ThreadBot threadBot = new ThreadBot(board);
+            ThreadBot threadBot = new ThreadBot(board.clone());
             board.undoMove();
             threadBots.add(threadBot);
             executor.execute(threadBot);

@@ -17,16 +17,10 @@ public class Bot {
         this.board = board;
     }
 
-    public void bot_move(Board board) throws Exception {
-
+    public Move bot_move() throws Exception {
         // Threading
-        MainThreadClass mainThreadClass = new MainThreadClass(board);
-        Move move = mainThreadClass.startThreads();
-
-        System.out.println("Move: " + move);
-        this.board.doMove(move);
-
-
+        MainThreadClass mainThreadClass = new MainThreadClass(this.board);
+        return mainThreadClass.startThreads();
     }
 
     double maxEval;
@@ -49,13 +43,10 @@ public class Bot {
             for (Move move : legalMoves) {
                 //System.out.println(board.getSideToMove() + "Maxi: " + move);
                 board.doMove(move);
-
                 if (board.isMated()) {
                     maxEval = 900 * depth;
                     eval = 0;
-                } else {
-                    eval = minimax(board, depth - 1, alpha, beta);
-                }
+                } else eval = minimax(board, depth - 1, alpha, beta);
 
                 board.undoMove();
                 maxEval = Math.max(maxEval, eval);
@@ -70,13 +61,10 @@ public class Bot {
             for (Move move : legalMoves) {
                 //System.out.println(board.getSideToMove() + "Mini: " + move);
                 board.doMove(move);
-
                 if (board.isMated()) {
                     minEval = -900 * depth;
                     eval = 0;
-                } else {
-                    eval = minimax(board, depth - 1, alpha, beta);
-                }
+                } else eval = minimax(board, depth - 1, alpha, beta);
 
                 board.undoMove();
                 minEval = Math.min(minEval, eval);
@@ -132,38 +120,5 @@ public class Bot {
         }
         return value;
     }
-
-    /*public int evaluation(char[] positions) {
-        //System.out.println(positions);
-        int[] evalBlack = new int[]{-10, -30, -30, -50, -90, -900}; // p-n-b-r-q-k
-        int[] evalWhite = new int[]{10, 30, 30, 50, 90, 900};
-        int eval = 0;
-            for (Character position : positions) {
-                if (position == 'P') eval += evalWhite[0];
-                else if (position == 'N') eval += evalWhite[1];
-                else if (position == 'B') eval += evalWhite[2];
-                else if (position == 'R') eval += evalWhite[3];
-                else if (position == 'Q') eval += evalWhite[4];
-                else if (position == 'K') eval += evalWhite[5];
-                if (position == 'p') eval += evalBlack[0];
-                else if (position == 'n') eval += evalBlack[1];
-                else if (position == 'b') eval += evalBlack[2];
-                else if (position == 'r') eval += evalBlack[3];
-                else if (position == 'q') eval += evalBlack[4];
-                else if (position == 'k') eval += evalBlack[5];
-            }
-        return eval;
-    }
-
-    public char[] positions(Board board) {
-        String context = board.getPositionId();
-        ArrayList<Character> output = new ArrayList<>();
-        context = context.substring(0, context.length() - 9);
-        context = context.replaceAll("[^a-zA-Z]", "");
-        //for (int k = 0; k < context.length(); k++) {
-        //        if (Character.isLetter(context.charAt(k))) output.add(context.charAt(k));
-        //}
-        return context.toCharArray();
-    }*/
 
 }

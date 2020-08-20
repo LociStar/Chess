@@ -7,10 +7,10 @@ public class ThreadBot implements Runnable {
     Board board;
     Bot bot;
     double return_value;
-    int death = 6;
+    int death = 5;
 
     public ThreadBot(Board board) {
-        this.board = board.clone();
+        this.board = board;
         this.bot = new Bot(board);
     }
 

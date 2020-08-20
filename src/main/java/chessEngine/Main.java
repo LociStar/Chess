@@ -46,17 +46,21 @@ public class Main {
                         Move player_move = new Move(Square.fromValue(move_in.substring(0, 2)), Square.fromValue(move_in.substring(2, 4)));
                         for (Move move : legalMoves) {
                             if (move.equals(player_move)) {
-                                board.doMove(player_move, true);
+                                board.doMove(player_move, false);
                                 break;
                             }
                         }
                     }
 
                 } else {
-                    bot.bot_move(board);
+                    Move move = bot.bot_move();
+                    System.out.println("Move: " + move);
+                    board.doMove(move);
                 }
             } else {
-                bot.bot_move(board);
+                Move move = bot.bot_move();
+                System.out.println("Move: " + move);
+                board.doMove(move);
             }
 
 //         //Make a move from E2 to E4 squares
@@ -64,7 +68,7 @@ public class Main {
         }
         System.out.println(board.toString());
         System.out.println("Game Over");
-        if(board.isMated()) System.out.println(board.getSideToMove() + " won!");
+        if(board.isMated()) System.out.println(board.getSideToMove().flip() + " won!");
 
     }
 }
