@@ -11,18 +11,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
 
+        UCI.uciCommunication();
+
+
         boolean bot_active = false;
         Bot bot;
 
         Scanner in = new Scanner(System.in);
         Board board = new Board();
-        //board.loadFromFen("rr1k4/8/8/8/8/8/8/7K b - - 0 0");
+        //board.loadFromFen("rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2");
 
         System.out.println("Player vs. Robot?");
         if (in.nextLine().equalsIgnoreCase("yes")) {
             bot_active = true;
         }
-        bot = new Bot(board);// load engine/ bot-object
+        PositionTabels tables = new PositionTabels();
+        bot = new Bot(board, tables);// load engine/ bot-object
 
         System.out.println("Name: ");
         Person person = new Person(in.nextLine());

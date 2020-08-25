@@ -11,15 +11,17 @@ import com.github.bhlangonijr.chesslib.move.MoveList;
 public class Bot {
 
     Board board;
-    int value;
+    PositionTabels tables;
+    double value;
 
-    public Bot(Board board) {
+    public Bot(Board board, PositionTabels tables) {
         this.board = board;
+        this.tables = tables;
     }
 
     public Move bot_move() throws Exception {
         // Threading
-        MainThreadClass mainThreadClass = new MainThreadClass(this.board);
+        MainThreadClass mainThreadClass = new MainThreadClass(this.board, this.tables);
         return mainThreadClass.startThreads();
     }
 
@@ -36,7 +38,9 @@ public class Bot {
             return (evaluation(board));
 
         } else if (board.isDraw()) {
-            return 0;
+            if (board.getSideToMove() == Side.WHITE) {
+                return Double.NEGATIVE_INFINITY;
+            } else return Double.POSITIVE_INFINITY;
 
         } else if (board.getSideToMove() == Side.WHITE) {
             maxEval = Double.NEGATIVE_INFINITY;
@@ -80,43 +84,43 @@ public class Bot {
         return 0;
     }
 
-    public int evaluation(Board board) {
+    public double evaluation(Board board) {
         this.value = 0;
-        for (Square ignored : board.getPieceLocation(Piece.BLACK_PAWN)) {
-            this.value -= 10;
+        for (Square square : board.getPieceLocation(Piece.BLACK_PAWN)) {
+            this.value -= 10 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.BLACK_ROOK)) {
-            this.value -= 50;
+        for (Square square : board.getPieceLocation(Piece.BLACK_ROOK)) {
+            this.value -= 50 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.BLACK_BISHOP)) {
-            this.value -= 30;
+        for (Square square : board.getPieceLocation(Piece.BLACK_BISHOP)) {
+            this.value -= 30 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.BLACK_KNIGHT)) {
-            this.value -= 30;
+        for (Square square : board.getPieceLocation(Piece.BLACK_KNIGHT)) {
+            this.value -= 30 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.BLACK_QUEEN)) {
-            this.value -= 90;
+        for (Square square : board.getPieceLocation(Piece.BLACK_QUEEN)) {
+            this.value -= 90 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.BLACK_KING)) {
-            this.value -= 900;
+        for (Square square : board.getPieceLocation(Piece.BLACK_KING)) {
+            this.value -= 900 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.WHITE_PAWN)) {
-            this.value += 10;
+        for (Square square : board.getPieceLocation(Piece.WHITE_PAWN)) {
+            this.value += 10 + tables.white_Pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.WHITE_ROOK)) {
-            this.value += 50;
+        for (Square square : board.getPieceLocation(Piece.WHITE_ROOK)) {
+            this.value += 50 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.WHITE_BISHOP)) {
-            this.value += 30;
+        for (Square square : board.getPieceLocation(Piece.WHITE_BISHOP)) {
+            this.value += 30 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.WHITE_KNIGHT)) {
-            this.value += 30;
+        for (Square square : board.getPieceLocation(Piece.WHITE_KNIGHT)) {
+            this.value += 30 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.WHITE_QUEEN)) {
-            this.value += 90;
+        for (Square square : board.getPieceLocation(Piece.WHITE_QUEEN)) {
+            this.value += 90 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
-        for (Square ignored : board.getPieceLocation(Piece.WHITE_KING)) {
-            this.value += 900;
+        for (Square square : board.getPieceLocation(Piece.WHITE_KING)) {
+            this.value += 900 + tables.black_pawn[square.getRank().ordinal()][square.getFile().ordinal()];
         }
         return value;
     }
