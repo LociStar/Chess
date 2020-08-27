@@ -1,9 +1,6 @@
 package chessEngine;
 
-import com.github.bhlangonijr.chesslib.Board;
-import com.github.bhlangonijr.chesslib.Piece;
-import com.github.bhlangonijr.chesslib.PieceType;
-import com.github.bhlangonijr.chesslib.Square;
+import com.github.bhlangonijr.chesslib.*;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveGenerator;
 import com.github.bhlangonijr.chesslib.move.MoveList;
@@ -20,7 +17,7 @@ public class UCI {
         Scanner input = new Scanner(System.in);
         while (true) {
             String inputString = input.nextLine();
-            System.out.println("inputString: " + inputString);
+            //System.out.println("inputString: " + inputString);
             if ("uci".equals(inputString)) {
                 inputUCI();
             } else if (inputString.startsWith("setoption")) {
@@ -68,7 +65,7 @@ public class UCI {
         input = input.substring(9).concat(" ");
         if (input.contains("startpos ")) {
             input = input.substring(9);
-            System.out.println(input);
+            //System.out.println(input);
             board.loadFromFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         } else if (input.contains("fen")) {
             input = input.substring(4);
@@ -98,8 +95,8 @@ public class UCI {
                     }
 
 
-
                 }
+                System.out.println(move);
                 board.doMove(move);
             }
             //System.out.println("Bot last move: " + move);
@@ -108,6 +105,9 @@ public class UCI {
 
     public static void inputGo() throws Exception {
         //search for best move //TODO: Threading/ stop command
+        //System.out.println("bestmove " + bot.bot_move().toString());
+        //board.doMove(move);
+        //System.out.println("Time millis: " + timeElapsed);
         System.out.println("bestmove " + bot.bot_move().toString());
     }
 

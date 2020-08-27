@@ -25,7 +25,7 @@ public class MainThreadClass {
     }
 
     public Move startThreads() throws Exception {
-        double before = System.currentTimeMillis();
+        //double before = System.currentTimeMillis();
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
         ArrayList<ThreadBot> threadBots = new ArrayList<>();
 
@@ -55,13 +55,14 @@ public class MainThreadClass {
         //System.out.println(ret);
 
         //System.out.println(threadBots.get(return_index).return_value);
-        double after = System.currentTimeMillis();
-        double durationMS = (after - before);
+        //double after = System.currentTimeMillis();
+        //double durationMS = (after - before);
         //System.out.println("Time: " + durationMS + " ms");
         //System.out.println("Bots possible moves: " + moves);
         //return moves.get(return_index);
 
         //System.out.println(evaluations);
+        //System.out.println(moves.get(evaluations.indexOf(ret)));
         return (moves.get(evaluations.indexOf(ret)));
     }
 
