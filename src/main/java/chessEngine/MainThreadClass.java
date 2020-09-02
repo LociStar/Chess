@@ -27,11 +27,16 @@ public class MainThreadClass {
     public Move startThreads() throws Exception {
         //double before = System.currentTimeMillis();
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
-        ArrayList<ThreadBot> threadBots = new ArrayList<>();
+        ArrayList<Thread> threadBots = new ArrayList<>();
 
         for (Move move : moves) {
             board.doMove(move);
-            ThreadBot threadBot = new ThreadBot(board.clone(), this.tables);
+            Thread threadBot = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    return;
+                }
+            });
             board.undoMove();
             threadBots.add(threadBot);
             executor.execute(threadBot);
@@ -42,7 +47,7 @@ public class MainThreadClass {
         //int return_index = maxMinIndex(threadBots, board.getSideToMove());
         if (executor.isTerminated()) {
             for (int i = 0; i < moves.size(); i++) {
-                evaluations.add(threadBots.get(i).return_value);
+                //evaluations.add(threadBots.get(i).return_value);
             }
         }
 

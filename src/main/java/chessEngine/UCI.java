@@ -5,6 +5,7 @@ import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveGenerator;
 import com.github.bhlangonijr.chesslib.move.MoveList;
 
+import java.io.Console;
 import java.util.*;
 
 public class UCI {
@@ -29,14 +30,14 @@ public class UCI {
             } else if (inputString.startsWith("position")) {
                 inputPosition(inputString);
             } else if (inputString.startsWith("go")) {
-                inputGo();
+                inputGo(inputString);
             } else if ("print".equals(inputString)) {
                 inputPrint();
             } else if ("quit".equals(inputString)) {
                 inputQuit();
             } else if ("stop".equals(inputString)) {
-                MoveList legalMoves = MoveGenerator.generateLegalMoves(board);
-                System.out.println("bestmove " + legalMoves.get(0).toString());
+                //MoveList legalMoves = MoveGenerator.generateLegalMoves(board);
+                System.out.println("bestmove " + bot.GlobalbestMove);
             }
         }
     }
@@ -45,6 +46,7 @@ public class UCI {
         System.out.println("id name " + ENGINENAME);
         System.out.println("id author LociStar");
         //options go here
+        //Zobrist.zobristFillArray();
         System.out.println("uciok");
     }
 
@@ -58,6 +60,8 @@ public class UCI {
 
     public static void inputUCINewGame() {
         board = new Board();
+        bot.transposition.clear();
+        //Zobrist.zobristFillArray();
         bot = new Bot(board, positionTabels);
     }
 
@@ -81,34 +85,62 @@ public class UCI {
                     move = new Move(Square.fromValue(s.substring(0, 2)), Square.fromValue(s.substring(2, 4)));
                 } else {
                     String temp = s.substring(4, 5);
-                    if (temp.equalsIgnoreCase("q")){
+                    if (temp.equalsIgnoreCase("q")) {
                         move = new Move(Square.fromValue(s.substring(0, 2)), Square.fromValue(s.substring(2, 4)), Piece.make(board.getSideToMove(), PieceType.QUEEN));
-                    }
-                    else if (temp.equalsIgnoreCase("r")){
+                    } else if (temp.equalsIgnoreCase("r")) {
                         move = new Move(Square.fromValue(s.substring(0, 2)), Square.fromValue(s.substring(2, 4)), Piece.make(board.getSideToMove(), PieceType.ROOK));
-                    }
-                    else if (temp.equalsIgnoreCase("n")){
+                    } else if (temp.equalsIgnoreCase("n")) {
                         move = new Move(Square.fromValue(s.substring(0, 2)), Square.fromValue(s.substring(2, 4)), Piece.make(board.getSideToMove(), PieceType.KNIGHT));
-                    }
-                    else if (temp.equalsIgnoreCase("b")){
+                    } else if (temp.equalsIgnoreCase("b")) {
                         move = new Move(Square.fromValue(s.substring(0, 2)), Square.fromValue(s.substring(2, 4)), Piece.make(board.getSideToMove(), PieceType.BISHOP));
                     }
 
 
                 }
-                System.out.println(move);
+                //System.out.println(move);
                 board.doMove(move);
             }
             //System.out.println("Bot last move: " + move);
         }
     }
 
-    public static void inputGo() throws Exception {
+    public static void inputGo(String input) throws Exception {
+        if (input.equals("go")) {
+            bot.wtime = 400000;
+            bot.btime = 400000;
+        } else {
+            input = input.substring(3).concat(" ");
+            ArrayList<String> tempArray = new ArrayList<>(Arrays.asList(input.split(" ")));
+            //System.out.println(tempArray);
+            if (!input.equals("infinite")) {
+                if (input.contains("wtime")) {
+                    bot.wtime = Integer.parseInt(tempArray.get(1));
+                }
+                if (input.contains("btime")) {
+                    bot.btime = Integer.parseInt(tempArray.get(3));
+                }
+                if (input.contains("winc")) {
+                    bot.winc = Integer.parseInt(tempArray.get(5));
+                }
+                if (input.contains("binc")) {
+                    bot.binc = Integer.parseInt(tempArray.get(7));
+                }
+            } else {
+                bot.wtime = 400000;
+                bot.btime = 400000;
+            }
+        }
+
         //search for best move //TODO: Threading/ stop command
         //System.out.println("bestmove " + bot.bot_move().toString());
         //board.doMove(move);
-        //System.out.println("Time millis: " + timeElapsed);
+        //System.out.println("Time millis: " +
         System.out.println("bestmove " + bot.bot_move().toString());
+        System.out.println(bot.transposition.size());
+        //System.out.println(board.getMoveCounter());
+        bot.transposition.values().removeIf(e -> e.age <= bot.board.getMoveCounter());
+        System.out.println(bot.transposition.size());
+
     }
 
     public static void inputPrint() {
